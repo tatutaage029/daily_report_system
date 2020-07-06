@@ -61,6 +61,9 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "approval_at", nullable = false)
+    private Timestamp approval_at;
+
     public Integer getId() {
         return id;
     }
@@ -115,5 +118,13 @@ public class Report {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Timestamp getApproval_at() {
+        return approval_at;
+    }
+
+    public void setApproval_at(Timestamp approval_at) {
+        this.approval_at = approval_at;
     }
 }
