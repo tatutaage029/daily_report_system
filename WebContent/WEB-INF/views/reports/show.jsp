@@ -30,6 +30,17 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>承認日時</th>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${report.approval_at == null}">承認待ち</c:when>
+                                <c:otherwise>
+                                    <fmt:formatDate value="${report.approval_at}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                </c:otherwise>
+                            </c:choose>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>更新日時</th>
                             <td>
                                 <fmt:formatDate value="${report.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -41,6 +52,18 @@
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
                 </c:if>
+
+                <c:if test="${sessionScope.login_employee.id != report.employee.id and sessionScope.login_employee.official_position >= 1}">
+                    <c:choose>
+                        <c:when test="${report.approval_at == null}">
+                            <button type="submit" formaction="<c:url value='/employees/approval'/>" name="approval">承認待ち</button>
+                        </c:when>
+                        <c:otherwise>
+                            <p>承認済み</p>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
+
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>

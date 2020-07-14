@@ -21,12 +21,34 @@
 <input type="password" name="password" />
 <br /><br />
 
-<label for="admin_flag">権限</label><br />
-<select name="admin_flag">
-    <option value="0"<c:if test="${employee.admin_flag == 0}"> selected</c:if>>一般</option>
-    <option value="1"<c:if test="${employee.admin_flag == 1}"> selected</c:if>>管理者</option>
+<label for="official_position">役職</label><br />
+<select name="official_position">
+    <option value="0"<c:if test="${employee.official_position == 0}"> selected</c:if>>一般</option>
+    <option value="1"<c:if test="${employee.official_position == 1}"> selected</c:if>>課長</option>
+    <option value="2"<c:if test="${employee.official_position == 2}"> selected</c:if>>部長</option>
 </select>
 <br /><br />
+
+<div id="admin_flag">
+    <label for="admin_flag">権限</label><br />
+    <select name="admin_flag">
+        <option value="0"<c:if test="${employee.admin_flag == 0}"> selected</c:if>>一般</option>
+        <option value="1"<c:if test="${employee.admin_flag == 1}"> selected</c:if>>管理者</option>
+    </select>
+    <br /><br />
+</div>
+
+<script>
+var ref = document.referrer;
+const admin_flag = document.getElementById("admin_flag")
+
+admin_flag.style.display ="none";
+
+if (ref.indexOf("/employees/show") != -1){
+    admin_flag.style.display ="block";
+}
+</script>
+
 
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>
