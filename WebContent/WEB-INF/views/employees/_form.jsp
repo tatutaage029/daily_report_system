@@ -38,6 +38,9 @@
     <br /><br />
 </div>
 
+<input type="hidden" name="_token" value="${_token}" />
+<button class="contribution" type="submit">投稿</button>
+
 <script>
 var ref = document.referrer;
 const admin_flag = document.getElementById("admin_flag")
@@ -48,7 +51,3 @@ if (ref.indexOf("/employees/show") != -1){
     admin_flag.style.display ="block";
 }
 </script>
-
-
-<input type="hidden" name="_token" value="${_token}" />
-<button type="submit">投稿</button>

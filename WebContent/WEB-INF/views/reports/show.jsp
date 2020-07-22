@@ -56,10 +56,15 @@
                 <c:if test="${sessionScope.login_employee.id != report.employee.id and sessionScope.login_employee.official_position >= 1}">
                     <c:choose>
                         <c:when test="${report.approval_at == null}">
-                            <button type="submit" formaction="<c:url value='/employees/approval'/>" name="approval">承認待ち</button>
+                            <form method="POST" action="<c:url value='/reports/approval' />">
+                                <input type="hidden" name="_token" value="${_token}" />
+                                <button class="approval" type="submit">
+                                    <img src="${pageContext.request.contextPath}/images/waiting_for_approval.gif" alt="承認待ち" />
+                                </button>
+                            </form>
                         </c:when>
                         <c:otherwise>
-                            <p>承認済み</p>
+                            <img src="${pageContext.request.contextPath}/images/approved.gif" alt="承認済み" />
                         </c:otherwise>
                     </c:choose>
                 </c:if>
